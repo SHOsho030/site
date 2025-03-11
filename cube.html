@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .cube {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transform: rotateX(-30deg) rotateY(45deg);
+        }
+
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.8;
+        }
+
+        #a {
+            background-color: red;
+            transform: translateZ(100px);
+        }
+
+        #b {
+            background-color: yellow;
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        #c {
+            background-color: green;
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        #d {
+            background-color: blue;
+            transform: rotateY(180deg) translateZ(100px);
+        }
+
+        #e {
+            background-color: purple;
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        #f {
+            background-color: orange;
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cube">
+        <div class="face" id="a"></div>
+        <div class="face" id="b"></div>
+        <div class="face" id="c"></div>
+        <div class="face" id="d"></div>
+        <div class="face" id="e"></div>
+        <div class="face" id="f"></div>
+    </div>
+</body>
+
+</html>
