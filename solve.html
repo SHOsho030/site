@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratic Equation Solver</title>
+</head>
+
+<body>
+    <script>
+        const a = parseFloat(prompt("请输入系数 a:"));
+        const b = parseFloat(prompt("请输入系数 b:"));
+        const c = parseFloat(prompt("请输入系数 c:"));
+
+        const delta = b * b - 4 * a * c;
+
+        const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+        alert(`方程的解为 x1 = ${x1} 和 x2 = ${x2}`);
+
+        console.log(`方程的解为 x1 = ${x1} 和 x2 = ${x2}`);
+    </script>
+</body>
+
+</html>    
