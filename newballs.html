@@ -1,0 +1,170 @@
+OOP
+Object-Oriented Programming
+面向对象
+物件导向的 拟物的
+
+encapsulation封装
+capsule
+
+liferal 防撞名
+
+var 概念={id:"abc";age:1,}
+var student = { id:"d100570";
+
+a = object create(concrete)
+
+function Student(i,n,a)
+{
+this.id = i; //attribute 特性
+this.method  = function(){}
+...
+}
+
+let s = new student("D100205");
+     b = new student(".......");
+
+student.prototype.methodz= function()
+
+<style>
+@keyframes fly
+{
+from {top:700px} 
+to{top:0px}
+}
+</style>
+<script>
+function Balloon( color1, diameter , speed )
+{
+this.color = color1;
+this.diameter = diameter ;
+this. speed = speed;
+this. make = fucntion()
+{
+let dv = document . createElement(“div”)
+dv .id = 'b' + this. id ;
+dv. style.cssText = "width:' + this.diameter + ' px; height:' + this.diameter +'px;border-radius:' + (diameter/2) + 'px;
+background-color:' + this.color +' ; position:absolute;left:' + (id*50)+ 'px; top:700px';
+dv.innerHTML = ' ' + this.id;
+document.body.appendChild(dv);
+}
+this.rise = function()
+{
+let dv = document.getElementById( 'b' + this.id );
+dv.style.animationName = "fly" ; 
+dv.style.animationDuration = ~~(700/this.speed) + 's' ;
+}
+}
+for (let i = 0 ; i< 100 ; i++ )
+{
+let r = ' ' + (Math.random()*1000000)).replace(/ \ . . *$/ , ' ');
+ler s = Math.random()*200;
+let w = (Math.random()*200 + 30);
+let b = new Balloon (i, '#' + r , w , s);
+b.make();
+b.rise();
+}
+</script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>气球动画</title>
+    <style>
+        #balloon-container {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            border: 1px solid #000;
+        }
+
+       .balloon {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
+            animation: floatEffect 10s infinite alternate; 
+        }
+
+        @keyframes floatEffect {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="balloon-container"></div>
+    <script>
+        const numberOfBalloons = 50; 
+        const balloonContainer = document.getElementById('balloon-container');
+        for (let index = 0; index < numberOfBalloons; index++) {
+            const singleBalloon = document.createElement('div');
+            singleBalloon.classList.add('balloon');
+
+            singleBalloon.style.width = '30px';
+            singleBalloon.style.height = '30px';
+
+            singleBalloon.style.left = Math.random() * (balloonContainer.offsetWidth - 30) + 'px';
+            singleBalloon.style.top = balloonContainer.offsetHeight + 'px';
+
+            singleBalloon.style.backgroundColor = getRandomColor();
+
+            balloonContainer.appendChild(singleBalloon);
+            startBalloonAnimation(singleBalloon);
+        }
+
+        function startBalloonAnimation(balloonElement) {
+            const movementSpeed = Math.random() * 3 + 1;
+            const rotationSpeed = Math.random() * 360; 
+
+            const sizeChangeIntervalId = setInterval(() => {
+                const randomBalloonSize = Math.random() * 30 + 20;
+                balloonElement.style.width = randomBalloonSize + 'px';
+                balloonElement.style.height = randomBalloonSize + 'px';
+            }, 1500);
+
+            const colorChangeIntervalId = setInterval(() => {
+                balloonElement.style.backgroundColor = getRandomColor();
+            }, 2000);
+
+            const moveIntervalId = setInterval(() => {
+                const currentTopPosition = parseInt(balloonElement.style.top);
+                balloonElement.style.top = (currentTopPosition - movementSpeed) + 'px';
+                if (currentTopPosition <= -30) {
+                    balloonElement.style.top = balloonContainer.offsetHeight + 'px';
+                    balloonElement.style.left = Math.random() * (balloonContainer.offsetWidth - 30) + 'px';
+                }
+            }, 50);
+
+            const rotateIntervalId = setInterval(() => {
+                balloonElement.style.transform = `rotate(${rotationSpeed}deg)`; 
+                rotationSpeed += Math.random() * 10 - 5; 
+            }, 100);
+
+            window.addEventListener('beforeunload', () => {
+                clearInterval(sizeChangeIntervalId);
+                clearInterval(colorChangeIntervalId);
+                clearInterval(moveIntervalId);
+                clearInterval(rotateIntervalId);
+            });
+        }
+
+        function getRandomColor() {
+            const colorChars = '0123456789ABCDEF';
+            let generatedColor = '#';
+            for (let charIndex = 0; charIndex < 6; charIndex++) {
+                generatedColor += colorChars[Math.floor(Math.random() * 16)];
+            }
+            return generatedColor;
+        }
+    </script>
+</body>
+
+</html>
+    
