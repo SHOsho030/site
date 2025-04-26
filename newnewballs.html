@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>balls</title>
+    <style>
+        #balloon-container {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+
+        .balloon {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        @keyframes burst {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        .burst {
+            animation: burst 0.5s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div id="balloon-container"></div>
+    <script>
+        const COLOR_PALETTE = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'black'];
+        const BURST_HEIGHT = 150; 
+
+        class Balloon {
+            constructor(container) {
+                this.container = container;
+                this.element = document.createElement('div');
+                this.element.classList.add('balloon');
+                
+                this.initialSize = Math.random() * 30 + 20; // 20-50px
+                this.speed = Math.random() * 3 + 1; // 1-4px/frame
+                this.color = COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)];
+                
+                this.x = Math.random() * (container.offsetWidth - this.initialSize);
+                this.y = container.offsetHeight;
+                
+                this.element.style.backgroundColor = this.color;
+                this.updateSize(this.initialSize);
+                this.updatePosition();
+            }
+
+            updateSize(size) {
+                const currentSize = size + (this.initialSize * ((this.container.offsetHeight - this.y) / this.container.offsetHeight));
+                this.element.style.width = currentSize + 'px';
+                this.element.style.height = currentSize + 'px';
+            }
+
+            updatePosition() {
+                this.element.style.left = this.x + 'px';
+                this.element.style.top = this.y + 'px';
+            }
+
+            rise() {
+                const move = () => {
+                    this.y -= this.speed;
+                    this.updatePosition();
+                    this.updateSize(this.initialSize);
+
+                    if (this.y <= BURST_HEIGHT && !this.bursting) {
+                        this.burst();
+                    }
+
+                    if (!this.bursting) {
+                        requestAnimationFrame(move);
+                    }
+                }
+                move();
+            }
+
+            burst() {
+                this.bursting = true;
+                this.element.classList.add('burst');
+                setTimeout(() => {
+                    this.element.remove();
+                }, 500);
+            }
+        }
+
+        const container = document.getElementById('balloon-container');
+        const balloons = [];
+
+        for (let i = 0; i < 50; i++) {
+            const balloon = new Balloon(container);
+            container.appendChild(balloon.element);
+            setTimeout(() => balloon.rise(), Math.random() * 3000); // 错开上升时间
+            balloons.push(balloon);
+        }
+    </script>
+</body>
+</html>
